@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Поле Чудес</title>
+</head>
+<body>
+<table
+        border="1"
+        align="center"
+        rules="rows"
+
+
+>
+    <tr>
+        <td>
+
+            <!--ШАПКА САЙТА-->
+
+            <table
+                    border="1"
+                    background="images/168.png"
+                    bgcolor="#7FFFD4"
+                    cellpadding="10"
+            >
+                <tr>
+                    <th>
+                        <h2>Игра "Поле Чудес"</h2>
+                    </th>
+                </tr>
+            </table>
+
+            <!--ОСНОВНОЙ КОНТЕНТ-->
+
+            <table
+                    border="1"
+                    bgcolor="#e6e6fa"
+                    cellpadding="10"
+            >
+                <tr>
+                    <td
+                            rowspan="2"
+                    >
+                        <h3>Описание</h3>
+                        <p>
+                            Капитал-шоу «По́ле чуде́с»  — советская и российская телеигра, выходящая каждую пятницу в 19:45 и являющаяся частичным аналогом американской телевизионной программы «Колесо Фортуны».</p>
+
+                        <p>В этой игре вам нужно будет угадать загаданное слово путем ответа на вопрос. В строчку нужно вводить только одну букву и после этого нажимать кнопку "угадать символ", чтобы проверить если эта буква в загаданном слове. После того как вы угадаете слово, оно появится целеком, а также выведется количество ваших попыток. Удачи!</p>
+                    </td>
+
+                    <!--САЙДБАР-->
+
+                    <td bgcolor="#e6e6fa">
+                        <h4>Создатель игры</h4>
+                        <a href="file:///C:/Users/админ/Desktop/Сайт/index.html">Моя страница</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td
+                            bgcolor="#e6e6fa"
+                            align="center">
+
+                        <p>Удачной игры и приятного времяпрепровождения!</p>
+                    </td>
+                </tr>
+            </table>
+
+            <!--ПОДВАЛ-->
+
+            <table
+                    border="1"
+                    bgcolor="#7FFFD4"
+
+                    cellpadding="10"
+            >
+                <tr>
+                    <th>
+                        <h4>Поле Чудес (Не доделано)</h4>
+                        <html>
+                        <head>
+                            <meta charset="utf-8">
+                            <title>Документ без названия</title>
+                            <style>
+                                .wrapperBlock{border:solid 2px #CCCCCC;padding:3px 7px;width:450px;}
+                                .wrapperBlock *{display:inline-block;vertical-align:center;}
+                            </style>
+                            <script>
+                                function getRandomInt(min, max){return Math.floor(Math.random() * (max - min + 1)) + min;}
+                                var randomString = ["черепаха","крокодил","ворон","росомаха","волк"];
+                                var nowString = randomString[getRandomInt(0,randomString.length-1)],blockNowString,ch=0,secredString="";
+                                window.addEventListener("load",function(){
+                                    blockNowString = document.getElementById("nowString");
+                                    for(var i=0; i<nowString.length; i++) secredString+="*";
+                                    blockNowString.innerHTML = secredString;
+
+                                });
+                            </script>
+                        </head>
+                        <body>
+                        <div class="wrapperBlock">
+                            <div id="nowString"></div>
+                            <input id="myText" type="text">
+                            <input type="button" value="угадать символ" onClick="info()">
+                            <div id="ch"></div>
+                        </div>
+                        </body>
+                        </html>
+                    </th>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
