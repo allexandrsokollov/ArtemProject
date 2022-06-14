@@ -25,6 +25,8 @@ if (isset($_POST['question'])) {
     var wordLength = getCookie("word").toString().length;
     var unveiledLettersAndStars = new Array(wordLength);
 
+    var bids = 0;
+
     var word = new Array(wordLength);
     let tempWord = getCookie("word").toString();
 
@@ -50,13 +52,37 @@ if (isset($_POST['question'])) {
         return res
     }
 
+    function isWholeWordUnveiled() {
+        for (let i = 0; i < wordLength; i++) {
+            if (unveiledLettersAndStars[i] === '*') {
+                return false;
+            }
+        }
+        return true;
+    }
+
     function checkInput() {
+        bids++;
         var letterOfWord = document.getElementById("wrdInpt").value.toUpperCase();
         letterOfWord.trim();
 
-
+        if (bids === 20 && !isWholeWordUnveiled()) {
+            alert("you lose. you can start new game");
+            bids = 0;
+            startNewGame();
+        }
         if (letterOfWord.length > 1) {
 
+            if (wordLength === letterOfWord.length) {
+                for (let i = 0; i < wordLength; i++) {
+                    if (word[i] === letterOfWord[i]) {
+                        unveiledLettersAndStars[i] = word[i];
+                    } else {
+                        break;
+                    }
+                }
+            }
+            endOfGame();
         } else {
             for (let i = 0; i < wordLength; i++) {
                 if (word[i] === letterOfWord) {
@@ -64,9 +90,23 @@ if (isset($_POST['question'])) {
                 }
             }
         }
-
         document.getElementById("word").innerHTML = unveiledLettersAndStars.toString();
+        if (isWholeWordUnveiled()) {
+            endOfGame();
+        }
+
         document.getElementById("wrdInpt").value = "";
+    }
+
+    function endOfGame() {
+        if (isWholeWordUnveiled()) {
+            document.getElementById("word").innerHTML = (unveiledLettersAndStars.toString().concat(" Congrats, you won"));
+            bids = 0;
+        } else {
+            alert("you lose. you can start new game");
+            bids = 0;
+            startNewGame();
+        }
     }
 </script>
 
