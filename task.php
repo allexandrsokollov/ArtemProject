@@ -25,7 +25,14 @@ if (isset($_POST['question'])) {
     var wordLength = getCookie("word").toString().length;
     var unveiledLettersAndStars = new Array(wordLength);
 
-    for (i = 0; i < wordLength; i++) {
+    var word = new Array(wordLength);
+    let tempWord = getCookie("word").toString();
+
+    for (let i = 0; i < wordLength; i++) {
+        word[i] = tempWord[i].toUpperCase();
+    }
+
+    for (let i = 0; i < wordLength; i++) {
         unveiledLettersAndStars[i] = '*'
     }
     function startNewGame() {
@@ -44,14 +51,32 @@ if (isset($_POST['question'])) {
     }
 
     function checkInput() {
+        var letterOfWord = document.getElementById("wrdInpt").value.toUpperCase();
+        letterOfWord.trim();
+
+
+        if (letterOfWord.length > 1) {
+
+        } else {
+            for (let i = 0; i < wordLength; i++) {
+                if (word[i] === letterOfWord) {
+                    unveiledLettersAndStars[i] = word[i];
+                }
+            }
+        }
+
+        document.getElementById("word").innerHTML = unveiledLettersAndStars.toString();
+        document.getElementById("wrdInpt").value = "";
     }
 </script>
 
 
-<h1 id="word"></h1>
+<h1 id="word"></h1><br>
+<h1 id="question"></h1>
 
 <script>
-    document.getElementById("word").innerHTML = getCookie('word');
+    document.getElementById("word").innerHTML = unveiledLettersAndStars.toString();
+    document.getElementById("question").innerHTML = getCookie("question");
 </script>
 
 <form action="startNewGame.php" method="post" >
@@ -60,9 +85,9 @@ if (isset($_POST['question'])) {
 
 
 
-<input name="wordLetter" type="text" placeholder="letter or whole word"/>
+<input name="wordLetter" id="wrdInpt" type="text" placeholder="letter or whole word"/>
 
-<button onclick="">check my input out</button>
+<button onclick="checkInput()">check my input out</button>
 
 
 </body>
